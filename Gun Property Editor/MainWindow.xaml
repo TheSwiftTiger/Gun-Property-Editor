@@ -1,0 +1,424 @@
+﻿<Window x:Class="Gun_Property_Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gun_Property_Editor"
+        xmlns:Ookii="clr-namespace:Ookii.Dialogs.Wpf;assembly=Ookii.Dialogs.Wpf"
+        mc:Ignorable="d"
+        Title="Gun Property Editor" Height="482.82" Width="668.59" ResizeMode="CanMinimize">
+    <Grid>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="400.667" VerticalAlignment="Top" Width="660.59">
+            <TabItem Header="Info">
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="gunNameLabel" Content="Gun Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="78.378"/>
+                    <TextBox x:Name="gunName" HorizontalAlignment="Left" Height="23" Margin="10,35.96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+                    <Label x:Name="spriteNameLabel" Content="Sprite Name" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="spriteName" HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+                    <Label x:Name="shortDescLabel" Content="Short Description" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="shortDesc" HorizontalAlignment="Left" Height="23" Margin="10,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
+                    <Label x:Name="longDescLabel" Content="Ammonomicon Entry" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="longDesc" AcceptsReturn="True" HorizontalAlignment="Left" Height="165" Margin="10,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
+                    <Image x:Name="sprite" HorizontalAlignment="Left" Height="131" Margin="465,10,0,0" VerticalAlignment="Top" Width="180" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="sprites\Pea_Shooter.png"/>
+                    <CheckBox x:Name="usesCustomSprites" Content="Uses Custom Gun Sprites" HorizontalAlignment="Left" Margin="465,146,0,0" VerticalAlignment="Top" Click="usesCustomSprites_Click"/>
+                    <Label x:Name="defaultSpriteLabel" Content="Default Sprite" HorizontalAlignment="Left" Margin="465,166,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="spriteDir" HorizontalAlignment="Left" Height="84" Margin="465,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TextChanged="spriteDir_TextChanged"/>
+                    <Button x:Name="openSprite" Content="Open" HorizontalAlignment="Left" Margin="465,281,0,0" VerticalAlignment="Top" Width="75" Click="OpenSprite_Click"/>
+                    <Label x:Name="label2" Content="Quality" HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="qualityBox" HorizontalAlignment="Left" Margin="170,36,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.79,-1.166" Height="23">
+                        <ComboBoxItem Content="D Quality" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="C Quality" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="B Quality" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="A Quality" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="S Quality" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="Excluded" HorizontalAlignment="Left" Width="118"/>
+
+                    </ComboBox>
+                    <Label x:Name="label3" Content="Shoot Style" HorizontalAlignment="Left" Margin="170,65,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="shootStyleBox" HorizontalAlignment="Left" Margin="170,91,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="shootStyleBox_SelectionChanged">
+                        <ComboBoxItem Content="Semi-Automatic" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="Automatic" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="Burst" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="Charged" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="Beam" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label x:Name="fpsLabel" Content="Sprite FPS" HorizontalAlignment="Left" Margin="465,306,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="spriteFps" HorizontalAlignment="Left" Height="23" Margin="465,332,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Stats">
+                <Grid Background="#FFE5E5E5" Margin="0,-1,0,1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="207*"/>
+                        <ColumnDefinition Width="448*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="hasHoming" Grid.ColumnSpan="3" Content="Has Homing" HorizontalAlignment="Left" Margin="179,11,0,0" VerticalAlignment="Top" Click="hasHoming_Click"/>
+                    <Label x:Name="homingVelocityLabel" Grid.ColumnSpan="3" Content="Homing Velocity" HorizontalAlignment="Left" Margin="179,31,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="homingVelocity" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="23" Margin="179,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="160.0"/>
+                    <Label x:Name="homingRangeLabel" Grid.ColumnSpan="3" Content="Homing Range" HorizontalAlignment="Left" Margin="179,80,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="homingRange" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="23" Margin="179,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="5.0" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <CheckBox x:Name="usesMoney" Grid.ColumnSpan="3" Content="Uses Money to Shoot" HorizontalAlignment="Left" Margin="179,143,0,0" VerticalAlignment="Top" Click="usesMoney_Click"/>
+                    <TextBox x:Name="moneyPerShot" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="23" Margin="179,189,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput"/>
+                    <Label x:Name="moneyLabel" Grid.ColumnSpan="3" Content="Money Per Shot" HorizontalAlignment="Left" Margin="179,163,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="maxAmmoLabel" Grid.ColumnSpan="2" Content="Max Ammo" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="maxAmmo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,30,0,0" TextWrapping="Wrap" Text="500" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput"/>
+                    <Label x:Name="shotsInClipLabel" Grid.ColumnSpan="2" Content="Shots in Clip" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="shotsInClip" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,78,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput"/>
+                    <Label x:Name="ammoCostLabel" Grid.ColumnSpan="2" Content="Ammo Cost Per Shot" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.535,-1.205"/>
+                    <TextBox x:Name="ammoCost" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,127,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput"/>
+                    <Label x:Name="angleVarianceLabel" Grid.ColumnSpan="2" Content="Angle Variance Of Shots" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.535,-1.205"/>
+                    <TextBox x:Name="angleVariance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,176,0,0" TextWrapping="Wrap" Text="8.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="reloadTimeLabel" Grid.ColumnSpan="2" Content="Reload Time" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="reloadTime" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,225,0,0" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="cooldownTimeLabel" Grid.ColumnSpan="2" Content="Time Between Shots" HorizontalAlignment="Left" Margin="10,248,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="cooldownTime" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,274,0,0" TextWrapping="Wrap" Text="0.5" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="burstCooldownTimeLabel" Grid.ColumnSpan="2" Content="Time Between Bursts" HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <TextBox x:Name="burstCooldownTime" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,323,0,0" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Visibility="Hidden"/>
+                    <Label x:Name="burstShotCountLabel" Grid.ColumnSpan="3" Content="Burst Shot Count" HorizontalAlignment="Left" Margin="135,297,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <TextBox x:Name="burstShotCount" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="23" Margin="135,323,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput" Visibility="Hidden"/>
+                    <TextBox x:Name="chargeTime" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,323,0,0" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="chargeTimeLabel" Grid.ColumnSpan="2" Content="Charge Time" HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="canGainAmmo" Grid.ColumnSpan="3" Content="Can Gain Ammo" HorizontalAlignment="Left" Margin="179,237,0,0" VerticalAlignment="Top" IsChecked="True"/>
+                    <CheckBox x:Name="infiniteAmmo" Grid.ColumnSpan="3" Content="Infinite Ammo" HorizontalAlignment="Left" Margin="179,217,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="canBeSold" Grid.ColumnSpan="3" Content="Can Be Sold" HorizontalAlignment="Left" Margin="179,257,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="customShopPriceCheck" Content="Custom Shop Price" HorizontalAlignment="Left" Margin="139,11,0,0" VerticalAlignment="Top" Click="customShopPrice_Click" Grid.Column="2"/>
+                    <TextBox x:Name="customShopPrice" HorizontalAlignment="Left" Height="23" Margin="139,29,0,0" TextWrapping="Wrap" Text="40" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+                    <CheckBox x:Name="canBeDropped" Content="Can Be Dropped" HorizontalAlignment="Left" Margin="139,57,0,0" VerticalAlignment="Top" Click="customShopPrice_Click" Grid.Column="2"/>
+                    <CheckBox x:Name="localActiveReload" Content="Active Reload" Grid.Column="2" HorizontalAlignment="Left" Margin="139,77,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="respawnsIfPitfall" Content="Respawns If Fallen Into Pitfall" Grid.Column="2" HorizontalAlignment="Left" Margin="139,97,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="blankDuringReload" Content="Blank During Reload" Grid.Column="2" HorizontalAlignment="Left" Margin="139,117,0,0" VerticalAlignment="Top" Click="blankDuringReload_Click"/>
+                    <Label x:Name="blankKnockbackPowerLabel" Content="Blank Knockback Power" Grid.Column="2" HorizontalAlignment="Left" Margin="139,135,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="blankKnockbackPower" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="139,161,0,0" TextWrapping="Wrap" Text="10.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="blankRadiusLabel" Content="Blank Radius" Grid.Column="2" HorizontalAlignment="Left" Margin="139,184,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="blankRadius" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="139,210,0,0" TextWrapping="Wrap" Text="10.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="blankDamageLabel" Content="Blank Damage To Enemies" Grid.Column="2" HorizontalAlignment="Left" Margin="139,233,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="blankDamage" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="139,259,0,0" TextWrapping="Wrap" Text="5.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="blankDamageMultiplierLabel" Content="Blank Damage Multiplier on Empty Clip" Grid.Column="2" HorizontalAlignment="Left" Margin="139,282,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="blankDamageMultiplier" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="139,309,0,0" TextWrapping="Wrap" Text="2.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Advanced">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="reflectBullets" Grid.ColumnSpan="2" Content="Reflects Bullets During Reload" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="usesScreenShake" Grid.ColumnSpan="2" Content="Uses Screen Shake" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Click="usesScreenShake_Click"/>
+                    <CheckBox x:Name="directionlessScreenShake" Grid.ColumnSpan="2" Content="Directionless" HorizontalAlignment="Left" Margin="200,30,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="screenShakeMagnitudeLabel" Grid.ColumnSpan="2" Content="Screen Shake Magnitude" HorizontalAlignment="Left" Margin="200,50,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="screenShakeMagnitude" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="200,76,0,0" TextWrapping="Wrap" Text="0.5" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="screenShakeSpeedLabel" Grid.ColumnSpan="2" Content="Screen Shake Speed" HorizontalAlignment="Left" Margin="200,104,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="screenShakeSpeed" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="200,130,0,0" TextWrapping="Wrap" Text="0.5" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="screenShakeTimeLabel" Grid.ColumnSpan="2" Content="Screen Shake Time" HorizontalAlignment="Left" Margin="200,158,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="screenShakeTime" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="200,184,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="screenShakeFalloffLabel" Grid.ColumnSpan="2" Content="Screen Shake Falloff" HorizontalAlignment="Left" Margin="201,212,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="screenShakeFalloff" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="200,238,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <CheckBox x:Name="usesBossDamageModifier" Grid.ColumnSpan="2" Content="Uses Boss Damage Multiplier" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Click="usesBossDamageModifier_Click"/>
+                    <TextBox x:Name="bossDamageModifier" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,50,0,0" TextWrapping="Wrap" Text="1.5" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="additionalClipCapacityLabel" Grid.ColumnSpan="2" Content="Additional Clip Capacity" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="additionalClipCapacity" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,104,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput"/>
+                    <CheckBox x:Name="usesShotgunStyleVelocityRandomizer" Grid.ColumnSpan="2" Content="Shotgun Style Velocity Randomizer" HorizontalAlignment="Left" Margin="341,10,0,0" VerticalAlignment="Top" Click="usesShotgunStyleVelocityRandomizer_Click"/>
+                    <Label x:Name="armorToGainOnPickupLabel" Grid.ColumnSpan="2" Content="Armor Gained On Pickup" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.105,-1.269"/>
+                    <TextBox x:Name="armorToGainOnPickup" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,158,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput"/>
+                    <Label x:Name="finalSpeedMinLabel" Grid.ColumnSpan="2" Content="Decreased Final Speed Percent Minimum" HorizontalAlignment="Left" Margin="341,30,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="decreaseFinalSpeedPercentMin" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="341,56,0,0" TextWrapping="Wrap" Text="5.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="finalSpeedMaxLabel" Grid.ColumnSpan="2" Content="Increased Final Speed Percent Maximum" HorizontalAlignment="Left" Margin="341,84,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="increaseFinalSpeedPercentMax" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="341,110,0,0" TextWrapping="Wrap" Text="5.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <CheckBox x:Name="clearsCooldownsLikeAwp" Grid.ColumnSpan="2" Content="Clears Cooldowns Like AWP" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="canSneakAttack" Grid.ColumnSpan="2" Content="Can Sneak Attack" HorizontalAlignment="Left" Margin="341,141,0,0" VerticalAlignment="Top" Click="canSneakAttack_Click"/>
+                    <TextBox x:Name="sneakAttackDamageMultiplier" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="341,184,0,0" TextWrapping="Wrap" Text="3.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="sneakAttackDamageMultiplierLabel" Grid.ColumnSpan="2" Content="Sneak Attack Damage Multiplier" HorizontalAlignment="Left" Margin="341,158,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="usesActiveItemRecharge" Grid.ColumnSpan="2" Content="Active Item Style Recharge" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" Click="usesActiveItemRecharge_Click"/>
+                    <TextBox x:Name="activeItemStyleRechargeAmount" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,226,0,0" TextWrapping="Wrap" Text="100.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <CheckBox x:Name="persistsOnDeath" Grid.ColumnSpan="2" Content="Persists On Death" HorizontalAlignment="Left" Margin="10,254,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="persistsOnPurchase" Grid.ColumnSpan="2" Content="Persists On Purchase" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="canCriticalFire" Grid.ColumnSpan="2" Content="Can Critical Hit" HorizontalAlignment="Left" Margin="341,212,0,0" VerticalAlignment="Top" Click="canCriticalFire_Click"/>
+                    <Label x:Name="criticalChanceLabel" Grid.ColumnSpan="2" Content="Critical Chance" HorizontalAlignment="Left" Margin="341,227,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="criticalChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="341,252,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="criticalDamageLabel" Grid.ColumnSpan="2" Content="Critical Damage Multiplier" HorizontalAlignment="Left" Margin="341,280,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="criticalDamage" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="341,306,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <CheckBox x:Name="gainsRateOfFireAsContinueAttack" Grid.ColumnSpan="2" Content="Gains Rate of Fire While Firing" HorizontalAlignment="Left" Margin="9,294,0,0" VerticalAlignment="Top" Click="gainsRateOfFireAsContinueAttack_Click"/>
+                    <Label x:Name="rateOfFireMultiplierLabel" Grid.ColumnSpan="2" Content="Rate of Fire Multiplier Addition Per Second" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="rateOfFireMultiplier" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,335,0,0" TextWrapping="Wrap" Text="5.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Projectile Properties">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="getProjectile" SelectedValuePath="Content" IsEditable="True" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="219" Grid.Column="1" Height="22" SelectionChanged="comboBox_SelectionChanged">
+                        <ComboBoxItem Content="Lamp" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Winchester_Shotgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Thompson" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Screech_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Sticky_Crossbow" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="AWP" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Zorgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Fish_Barrel_gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Bow" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Dueling_Pistol" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Super Soaker" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="CrossBow" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Plasma_Rifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Beehive" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="AK-47" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Yari_Rocket_Launcher" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Earthworm Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Looper" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="M79_Grenade_Launcher" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="moonrakerLaser" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="BSG" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Bro Revolver Red" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="desertEagle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Dart_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="M1" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Nailgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Zapper" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Mailbox_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Spine_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="M1911" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Klobb" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="dl45" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Eyeball_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Bro Revolver Green" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Mega Buster" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Serious Cannon" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Magnum" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="RPG" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="FreezeRay" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Samus Arm" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Uzi" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Skull_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="boltRifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Sniper Rifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="SAA" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="shotgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Crescent_Moon_Crossbow" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Golden_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Bowcaster" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="space_shotgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="38_special" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Pulse_Handgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="space_rifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="E12_Blaster_Rifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Demon_Head" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Bundle_Wands" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="colt1851" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Makarov" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="SNS" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Bladerunner" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Elephant_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Raw_Iron_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Minigun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="SPMA1" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Radiation_Laser" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Robot_Gunhand" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Knav3" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Beholster_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="H4MMER" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Missile_Launcher" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Gold_Double_Barrel_Shotgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="MAC10" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="AKey-47" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="M16" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Polar_Star" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Excaliber" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Rusty_Sidearm" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Unicorn_Horn 2" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Raiden_Laser" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Energy_Cannon" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Blunderbuss" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Pulse_Rifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Cactus" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Burning_Hand" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Crossbow_Shotgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Purple_Raygun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Box_Rocket" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Ice_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Yellow_Blaster" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Shotgun_Hate" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Magic_Revolver" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Dragonbreath_Machine_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Electric_Guitar_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="TShirt_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Squad_Green_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Squad_Red_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Electric_Rifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Trash_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Plasma_Cell_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Bigiron" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Black_Hole_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Rectangle_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Ant_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Jet_Engine" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Crestfallen_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Proton_Pack_Beam" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Noisy_Cricket" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Winchester_rifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Mauser_Pistol" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Lawgiver" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Machine_Gun_Hand" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Fossilized_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Pea_Shooter" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Urn_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Crystal_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Bow_Charmed" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Sawedoff_Shotgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Rusty_Goop_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Syringe_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="BulletBow" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="AK-47_tutorial" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Cold_45" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Ice_Breakers_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Distortion_Launcher" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Future_Assault_Rifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Twin_Energy_Blaster" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Gilded_Hydra" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="ArtfulDodger_ChallengeGun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Matter_Antimatter_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Flare_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Molotov_Cocktail_Launcher" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Sailgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Charge_Shot" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Zilla_Combat_Shotgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Electro_Shark_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Disintegrator" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Bomb_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Mutant_Arm" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Wind_Up_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Pillow" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Pitchfork" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Composite_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Mask_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Wood_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Lower_Case_r" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Saw_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Excaliber_Green" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Shotgun_Axe" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Shotgrub" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Claw" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Railgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Shark_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Snakepoof_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Cerebral_Bore" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Trick_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="ME_Shotgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Meat_Launcher" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Railgun Variant" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Nikita" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Block_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Swordgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Derringer" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Shotgun_Love" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Shieldmet_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Triple_Crossbow" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Sling" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Flash_Raygun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Phoenix" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Magic_Sniper_Rifle" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Ice_Giant_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Mjolnir" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Anvil_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Mining_Laser" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Hybrid_Magic_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Engine_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Snowball_Launcher" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Mermaid_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Rattler_Shotgun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Blasphemy" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Trident" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Scrambler" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Shellegun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Tentacle_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Quad_Laser" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Cash_Register_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Origami_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Banana_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Super_Meat_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Kirkcannon" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Camera_Gun" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Guzheng" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBoxItem Content="Poxcannon_Gun" HorizontalAlignment="Left" Width="200"/>
+                    </ComboBox>
+                    <Label x:Name="getProjectileFrom" Content="Get Projectile From" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-7.417,-1.91" Grid.Column="1" Height="26" Width="152"/>
+                    <Label x:Name="projectileScaleMultiplierLabel" Grid.ColumnSpan="2" Content="Projectile Scale Multiplier" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="projectileScaleMultiplier" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,94,0,0" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <CheckBox x:Name="appliesKnockbackToPlayer" Grid.ColumnSpan="2" Content="Applies Knockback to Player" HorizontalAlignment="Left" Margin="281,16,0,0" VerticalAlignment="Top" Click="appliesKnockbackToPlayer_Click"/>
+                    <Label x:Name="knockbackForceLabel" Grid.ColumnSpan="2" Content="Player Knockback Force" HorizontalAlignment="Left" Margin="281,36,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="playerKnockbackForce" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="281,62,0,0" TextWrapping="Wrap" Text="10.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <CheckBox x:Name="damagesWalls" Grid.ColumnSpan="2" Content="Damages Walls" HorizontalAlignment="Left" Margin="489,16,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="projectileDamageLabel" Grid.ColumnSpan="2" Content="Damage" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="projectileDamage" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="10,148,0,0" TextWrapping="Wrap" Text="9.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="speedLabel" Grid.ColumnSpan="2" Content="Speed" HorizontalAlignment="Left" Margin="135,122,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="projectileSpeed" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="135,148,0,0" TextWrapping="Wrap" Text="15.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="forceLabel" Grid.ColumnSpan="2" Content="Force" HorizontalAlignment="Left" Margin="260,122,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="projectileForce" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="260,148,0,0" TextWrapping="Wrap" Text="5.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <Label x:Name="rangeLabel" Grid.ColumnSpan="2" Content="Range" HorizontalAlignment="Left" Margin="385,122,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="projectileRange" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="385,148,0,0" TextWrapping="Wrap" Text="10.0" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput"/>
+                    <CheckBox x:Name="collidesWithEnemies" Grid.ColumnSpan="2" Content="Collides With Enemies" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="collidesWithPlayer" Grid.ColumnSpan="2" Content="Collides With Player" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="collidesWithProjectiles" Grid.ColumnSpan="2" Content="Collides With Projectiles" HorizontalAlignment="Left" Margin="10,216,0,0" VerticalAlignment="Top" Click="collidesWithProjectiles_Click"/>
+                    <CheckBox x:Name="collidesWithPlayerProjectiles" Grid.ColumnSpan="2" Content="Collides Only With Player Projectiles" HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="doesBounce" Grid.ColumnSpan="2" Content="Bounce" HorizontalAlignment="Left" Margin="260,176,0,0" VerticalAlignment="Top" Click="doesBounce_Click"/>
+                    <TextBox x:Name="bounces" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="260,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput" Text="5"/>
+                    <CheckBox x:Name="doesPierce" Grid.ColumnSpan="2" Content="Pierce" HorizontalAlignment="Left" Margin="385,176,0,0" VerticalAlignment="Top" Click="doesPierce_Click"/>
+                    <TextBox x:Name="pierces" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="385,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput" Text="5"/>
+                    <Label x:Name="numberOfShotsLabel" Grid.ColumnSpan="2" Content="Number Of Shots" HorizontalAlignment="Left" Margin="489,36,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="numberOfShots" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="489,62,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" PreviewTextInput="isInteger_PreviewTextInput"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Status Effects" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="stunsEnemies" Grid.ColumnSpan="2" Content="Stuns Enemies" HorizontalAlignment="Left" Margin="127,9,0,0" VerticalAlignment="Top" Width="100" Click="stunsEnemies_Click"/>
+                    <Label x:Name="stunChanceLabel" Grid.ColumnSpan="2" Content="Stun Chance" HorizontalAlignment="Left" Margin="127,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="stunChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="127,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="0.3"/>
+                    <Label x:Name="stunDurationLabel" Grid.ColumnSpan="2" Content="Stun Duration" HorizontalAlignment="Left" Margin="127,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="stunDuration" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="127,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="5.0"/>
+                    <CheckBox x:Name="bleedsEnemies" Grid.ColumnSpan="2" Content="Bleeds Enemies" HorizontalAlignment="Left" Margin="265,9,0,0" VerticalAlignment="Top" Width="100" Click="bleedsEnemies_Click"/>
+                    <Label x:Name="bleedChanceLabel" Grid.ColumnSpan="2" Content="Bleed Chance" HorizontalAlignment="Left" Margin="265,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <Label x:Name="bleedDurationLabel" Grid.ColumnSpan="2" Content="Bleed Duration" HorizontalAlignment="Left" Margin="265,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="bleedChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="265,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="0.3"/>
+                    <TextBox x:Name="bleedDuration" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="265,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="5.0"/>
+                    <CheckBox x:Name="charmsEnemies" Grid.ColumnSpan="2" Content="Charms Enemies" HorizontalAlignment="Left" Margin="404,9,0,0" VerticalAlignment="Top" Width="113" Click="charmsEnemies_Click"/>
+                    <Label x:Name="charmChanceLabel" Grid.ColumnSpan="2" Content="Charm Chance" HorizontalAlignment="Left" Margin="404,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="charmChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="404,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="0.3"/>
+                    <Label x:Name="charmDurationLabel" Grid.ColumnSpan="2" Content="Charm Duration" HorizontalAlignment="Left" Margin="404,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="charmDuration" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="404,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="5.0"/>
+                    <CheckBox x:Name="firesEnemies" Grid.ColumnSpan="2" Content="Burns Enemies" HorizontalAlignment="Left" Margin="265,132,0,0" VerticalAlignment="Top" Width="113" Click="firesEnemies_Click"/>
+                    <Label x:Name="fireChanceLabel" Grid.ColumnSpan="2" Content="Burn Chance" HorizontalAlignment="Left" Margin="265,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="fireChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="265,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="0.3"/>
+                    <Label x:Name="fireDurationLabel" Grid.ColumnSpan="2" Content="Burn Duration" HorizontalAlignment="Left" Margin="265,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="fireDuration" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="265,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="5.0"/>
+                    <CheckBox x:Name="freezesEnemies" Grid.ColumnSpan="2" Content="Freezes Enemies" HorizontalAlignment="Left" Margin="127,132,0,0" VerticalAlignment="Top" Width="120" Click="freezesEnemies_Click"/>
+                    <Label x:Name="freezeChanceLabel" Grid.ColumnSpan="2" Content="Freeze Chance" HorizontalAlignment="Left" Margin="127,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="freezeChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="127,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="0.3"/>
+                    <Label x:Name="freezeDurationLabel" Grid.ColumnSpan="2" Content="Freeze Duration" HorizontalAlignment="Left" Margin="127,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="freezeDuration" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="127,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="5.0"/>
+                    <CheckBox x:Name="speedsEnemies" Grid.ColumnSpan="2" Content="Speeds Enemies" HorizontalAlignment="Left" Margin="404,132,0,0" VerticalAlignment="Top" Width="113" Click="speedsEnemies_Click"/>
+                    <Label x:Name="speedChanceLabel" Grid.ColumnSpan="2" Content="Speed Chance" HorizontalAlignment="Left" Margin="404,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="speedChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="404,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="0.3"/>
+                    <TextBox x:Name="speedDuration" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="404,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="5.0"/>
+                    <Label x:Name="speedDurationLabel" Grid.ColumnSpan="2" Content="Speed Duration" HorizontalAlignment="Left" Margin="404,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <Label x:Name="speedMultiplierLabel" Grid.ColumnSpan="2" Content="Speed Multiplier" HorizontalAlignment="Left" Margin="404,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="speedMultiplier" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="404,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="2.0"/>
+                    <CheckBox x:Name="poisonsEnemies" Grid.ColumnSpan="2" Content="Poisons Enemies" HorizontalAlignment="Left" Margin="127,255,0,0" VerticalAlignment="Top" Width="120" Click="poisonsEnemies_Click"/>
+                    <Label x:Name="poisonChanceLabel" Grid.ColumnSpan="2" Content="Poison Chance" HorizontalAlignment="Left" Margin="127,274,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.526"/>
+                    <TextBox x:Name="poisonChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="127,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="isFloat_PreviewTextInput" Text="0.3"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="createButton" Content="Create!" HorizontalAlignment="Center" Margin="10,406,453,0" VerticalAlignment="Top" Width="200" Height="36" Click="createButton_Click"/>
+
+    </Grid>
+</Window>

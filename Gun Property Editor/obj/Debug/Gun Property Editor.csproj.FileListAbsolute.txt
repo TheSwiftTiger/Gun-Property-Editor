@@ -1,0 +1,19 @@
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\bin\Debug\Gun Property Editor.exe.config
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\bin\Debug\Gun Property Editor.exe
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\bin\Debug\Gun Property Editor.pdb
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\bin\Debug\Ookii.Dialogs.Wpf.dll
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\bin\Debug\Ookii.Dialogs.Wpf.xml
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\Gun Property Editor.csprojResolveAssemblyReference.cache
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\MainWindow.g.cs
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\App.g.cs
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\Gun Property Editor_MarkupCompile.cache
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\Gun Property Editor_MarkupCompile.lref
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\MainWindow.baml
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\Gun Property Editor.g.resources
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\Gun_Property_Editor.Properties.Resources.resources
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\Gun Property Editor.csproj.GenerateResource.Cache
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\Gun Property Editor.exe
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\obj\Debug\Gun Property Editor.pdb
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\bin\Debug\YamlDotNet.dll
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\bin\Debug\YamlDotNet.pdb
+C:\Users\chapa\onedrive\documents\visual studio 2015\Projects\Gun Property Editor\Gun Property Editor\bin\Debug\YamlDotNet.xml
