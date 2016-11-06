@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Text.RegularExpressions;
-using System.Globalization;
 using Microsoft.Win32;
 using YamlDotNet.Serialization;
-using System.IO;
 
 namespace Gun_Property_Editor
 {
@@ -258,7 +249,7 @@ namespace Gun_Property_Editor
 
         private void usesCustomSprites_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)usesCustomSprites.IsChecked)
+            if (usesCustomSprites.IsChecked ?? false)
             {
                 defaultSpriteLabel.Visibility = Visibility.Visible;
                 openSprite.Visibility = Visibility.Visible;
@@ -286,7 +277,7 @@ namespace Gun_Property_Editor
 
         private void hasHoming_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)hasHoming.IsChecked)
+            if (hasHoming.IsChecked ?? false) 
             {
                 homingVelocityLabel.Visibility = Visibility.Visible;
                 homingVelocity.Visibility = Visibility.Visible;
@@ -330,7 +321,7 @@ namespace Gun_Property_Editor
 
         private void usesMoney_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)usesMoney.IsChecked)
+            if (usesMoney.IsChecked ?? false)
             {
                 moneyLabel.Visibility = Visibility.Visible;
                 moneyPerShot.Visibility = Visibility.Visible;
@@ -375,7 +366,7 @@ namespace Gun_Property_Editor
 
         private void customShopPrice_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)customShopPriceCheck.IsChecked)
+            if (customShopPriceCheck.IsChecked ?? false)
             {
                 customShopPrice.Visibility = Visibility.Visible;
             }
@@ -387,7 +378,7 @@ namespace Gun_Property_Editor
 
         private void blankDuringReload_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)blankDuringReload.IsChecked)
+            if (blankDuringReload.IsChecked ?? false)
             {
                 blankKnockbackPower.Visibility = Visibility.Visible;
                 blankKnockbackPowerLabel.Visibility = Visibility.Visible;
@@ -413,7 +404,7 @@ namespace Gun_Property_Editor
 
         private void usesScreenShake_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)usesScreenShake.IsChecked)
+            if (usesScreenShake.IsChecked ?? false)
             {
                 directionlessScreenShake.Visibility = Visibility.Visible;
                 screenShakeMagnitudeLabel.Visibility = Visibility.Visible;
@@ -441,7 +432,7 @@ namespace Gun_Property_Editor
 
         private void usesBossDamageModifier_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)usesBossDamageModifier.IsChecked)
+            if (usesBossDamageModifier.IsChecked ?? false)
             {
                 bossDamageModifier.Visibility = Visibility.Visible;
             }
@@ -453,7 +444,7 @@ namespace Gun_Property_Editor
 
         private void usesShotgunStyleVelocityRandomizer_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)usesShotgunStyleVelocityRandomizer.IsChecked)
+            if (usesShotgunStyleVelocityRandomizer.IsChecked ?? false)
             {
                 decreaseFinalSpeedPercentMin.Visibility = Visibility.Visible;
                 increaseFinalSpeedPercentMax.Visibility = Visibility.Visible;
@@ -471,7 +462,7 @@ namespace Gun_Property_Editor
 
         private void canSneakAttack_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)canSneakAttack.IsChecked)
+            if (canSneakAttack.IsChecked ?? false)
             {
                 sneakAttackDamageMultiplierLabel.Visibility = Visibility.Visible;
                 sneakAttackDamageMultiplier.Visibility = Visibility.Visible;
@@ -485,7 +476,7 @@ namespace Gun_Property_Editor
 
         private void usesActiveItemRecharge_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)usesActiveItemRecharge.IsChecked)
+            if (usesActiveItemRecharge.IsChecked ?? false)
             {
                 activeItemStyleRechargeAmount.Visibility = Visibility.Visible;
             }
@@ -497,7 +488,7 @@ namespace Gun_Property_Editor
 
         private void canCriticalFire_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)canCriticalFire.IsChecked)
+            if (canCriticalFire.IsChecked ?? false)
             {
                 criticalChance.Visibility = Visibility.Visible;
                 criticalChanceLabel.Visibility = Visibility.Visible;
@@ -515,7 +506,7 @@ namespace Gun_Property_Editor
 
         private void gainsRateOfFireAsContinueAttack_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)gainsRateOfFireAsContinueAttack.IsChecked)
+            if (gainsRateOfFireAsContinueAttack.IsChecked ?? false)
             {
                 rateOfFireMultiplier.Visibility = Visibility.Visible;
                 rateOfFireMultiplierLabel.Visibility = Visibility.Visible;
@@ -534,7 +525,7 @@ namespace Gun_Property_Editor
 
         private void appliesKnockbackToPlayer_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)appliesKnockbackToPlayer.IsChecked)
+            if (appliesKnockbackToPlayer.IsChecked ?? false)
             {
                 knockbackForceLabel.Visibility = Visibility.Visible;
                 playerKnockbackForce.Visibility = Visibility.Visible;
@@ -548,7 +539,7 @@ namespace Gun_Property_Editor
 
         private void collidesWithProjectiles_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)collidesWithProjectiles.IsChecked)
+            if (collidesWithProjectiles.IsChecked ?? false)
             {
                 collidesWithPlayerProjectiles.Visibility = Visibility.Visible;
             }
@@ -560,7 +551,7 @@ namespace Gun_Property_Editor
 
         private void doesPierce_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)doesPierce.IsChecked)
+            if (doesPierce.IsChecked ?? false)
             {
                 pierces.Visibility = Visibility.Visible;
             }
@@ -572,7 +563,7 @@ namespace Gun_Property_Editor
 
         private void doesBounce_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)doesBounce.IsChecked)
+            if (doesBounce.IsChecked ?? false)
             {
                 bounces.Visibility = Visibility.Visible;
             }
@@ -584,7 +575,7 @@ namespace Gun_Property_Editor
 
         private void stunsEnemies_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)stunsEnemies.IsChecked)
+            if (stunsEnemies.IsChecked ?? false)
             {
                 stunChance.Visibility = Visibility.Visible;
                 stunChanceLabel.Visibility = Visibility.Visible;
@@ -602,7 +593,7 @@ namespace Gun_Property_Editor
 
         private void bleedsEnemies_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)bleedsEnemies.IsChecked)
+            if (bleedsEnemies.IsChecked ?? false)
             {
                 bleedChance.Visibility = Visibility.Visible;
                 bleedChanceLabel.Visibility = Visibility.Visible;
@@ -620,7 +611,7 @@ namespace Gun_Property_Editor
 
         private void charmsEnemies_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)charmsEnemies.IsChecked)
+            if (charmsEnemies.IsChecked ?? false)
             {
                 charmChance.Visibility = Visibility.Visible;
                 charmChanceLabel.Visibility = Visibility.Visible;
@@ -638,7 +629,7 @@ namespace Gun_Property_Editor
 
         private void firesEnemies_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)firesEnemies.IsChecked)
+            if (firesEnemies.IsChecked ?? false)
             {
                 fireChance.Visibility = Visibility.Visible;
                 fireChanceLabel.Visibility = Visibility.Visible;
@@ -656,7 +647,7 @@ namespace Gun_Property_Editor
 
         private void freezesEnemies_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)freezesEnemies.IsChecked)
+            if (freezesEnemies.IsChecked ?? false)
             {
                 freezeChance.Visibility = Visibility.Visible;
                 freezeChanceLabel.Visibility = Visibility.Visible;
@@ -674,7 +665,7 @@ namespace Gun_Property_Editor
 
         private void speedsEnemies_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)speedsEnemies.IsChecked)
+            if (speedsEnemies.IsChecked ?? false)
             {
                 speedChance.Visibility = Visibility.Visible;
                 speedChanceLabel.Visibility = Visibility.Visible;
@@ -692,7 +683,7 @@ namespace Gun_Property_Editor
 
         private void poisonsEnemies_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)poisonsEnemies.IsChecked)
+            if (poisonsEnemies.IsChecked ?? false)
             {
                 poisonChance.Visibility = Visibility.Visible;
                 poisonChanceLabel.Visibility = Visibility.Visible;
@@ -720,44 +711,44 @@ namespace Gun_Property_Editor
             gun.GetProjectileFrom = getProjectile.Text;
             gun.NumberOfShots = int.Parse(numberOfShots.Text);
             gun.ArmorToGainOnPickup = int.Parse(armorToGainOnPickup.Text);
-            gun.ReflectBulletsDuringReload = (bool)reflectBullets.IsChecked;
-            gun.DirectionlessScreenShake = (bool)directionlessScreenShake.IsChecked;
-            gun.ClearsCooldownsLikeAWP = (bool)clearsCooldownsLikeAwp.IsChecked;
-            gun.AppliesHoming = (bool)hasHoming.IsChecked;
+            gun.ReflectBulletsDuringReload = reflectBullets.IsChecked ?? false;
+            gun.DirectionlessScreenShake = directionlessScreenShake.IsChecked ?? false;
+            gun.ClearsCooldownsLikeAWP = clearsCooldownsLikeAwp.IsChecked ?? false;
+            gun.AppliesHoming = hasHoming.IsChecked ?? false;
             gun.AppliedHomingAngularVelocity = float.Parse(homingVelocity.Text);
             gun.AppliedHomingDetectRadius = float.Parse(homingRange.Text);
-            gun.CanSneakAttack = (bool)canSneakAttack.IsChecked;
+            gun.CanSneakAttack = canSneakAttack.IsChecked ?? false;
             gun.SneakAttackDamageMultiplier = float.Parse(sneakAttackDamageMultiplier.Text);
-            gun.RequiresFundsToShoot = (bool)usesMoney.IsChecked;
+            gun.RequiresFundsToShoot = usesMoney.IsChecked ?? false;
             gun.CurrencyCostPerShot = int.Parse(moneyPerShot.Text);
-            gun.LocalActiveReload = (bool)localActiveReload.IsChecked;
-            gun.UsesRechargeLikeActiveItem = (bool)usesActiveItemRecharge.IsChecked;
+            gun.LocalActiveReload = localActiveReload.IsChecked ?? false;
+            gun.UsesRechargeLikeActiveItem = usesActiveItemRecharge.IsChecked ?? false;
             gun.ActiveItemStyleRechargeAmount = float.Parse(activeItemStyleRechargeAmount.Text);
-            gun.CanCriticalFire = (bool)canCriticalFire.IsChecked;
+            gun.CanCriticalFire = canCriticalFire.IsChecked ?? false;
             gun.CriticalChance = float.Parse(criticalChance.Text);
             gun.CriticalDamageMultiplier = float.Parse(criticalDamage.Text);
-            gun.GainsRateOfFireAsContinueAttack = (bool)gainsRateOfFireAsContinueAttack.IsChecked;
+            gun.GainsRateOfFireAsContinueAttack = gainsRateOfFireAsContinueAttack.IsChecked ?? false;
             gun.RateOfFireMultiplierAdditionPerSecond = float.Parse(rateOfFireMultiplier.Text);
             gun.Quality = ConvertToQuality(qualityBox.SelectedIndex);
-            gun.CanBeDropped = (bool)canBeDropped.IsChecked;
-            gun.PersistsOnDeath = (bool)persistsOnDeath.IsChecked;
-            gun.RespawnsIfPitfall = (bool)respawnsIfPitfall.IsChecked;
-            gun.UsesCustomCost = (bool)customShopPriceCheck.IsChecked;
+            gun.CanBeDropped = canBeDropped.IsChecked ?? false;
+            gun.PersistsOnDeath = persistsOnDeath.IsChecked ?? false;
+            gun.RespawnsIfPitfall = respawnsIfPitfall.IsChecked ?? false;
+            gun.UsesCustomCost = customShopPriceCheck.IsChecked ?? false;
             gun.CustomCost = int.Parse(customShopPrice.Text);
-            gun.PersistsOnPurchase = (bool)persistsOnPurchase.IsChecked;
-            gun.CanBeSold = (bool)canBeSold.IsChecked;
+            gun.PersistsOnPurchase = persistsOnPurchase.IsChecked ?? false;
+            gun.CanBeSold = canBeSold.IsChecked ?? false;
             gun.MaxAmmo = int.Parse(maxAmmo.Text);
             gun.AdditionalClipCapacity = int.Parse(additionalClipCapacity.Text);
-            gun.InfiniteAmmo = (bool)infiniteAmmo.IsChecked;
-            gun.UsesBossDamageModifier = (bool)usesBossDamageModifier.IsChecked;
+            gun.InfiniteAmmo = infiniteAmmo.IsChecked ?? false;
+            gun.UsesBossDamageModifier = usesBossDamageModifier.IsChecked ?? false;
             gun.CustomBossDamageModifier = float.Parse(bossDamageModifier.Text);
-            gun.CanGainAmmo = (bool)canGainAmmo.IsChecked;
+            gun.CanGainAmmo = canGainAmmo.IsChecked ?? false;
             gun.BlankDamageScalingOnEmptyClip = float.Parse(blankDamageMultiplier.Text);
             gun.BlankDamageToEnemies = float.Parse(blankDamage.Text);
-            gun.BlankDuringReload = (bool)blankDuringReload.IsChecked;
+            gun.BlankDuringReload = blankDuringReload.IsChecked ?? false;
             gun.BlankKnockbackPower = float.Parse(blankKnockbackPower.Text);
             gun.BlankReloadRadius = float.Parse(blankRadius.Text);
-            gun.DoesScreenShake = (bool)usesScreenShake.IsChecked;
+            gun.DoesScreenShake = usesScreenShake.IsChecked ?? false;
             gun.ScreenShakeMagnitude = float.Parse(screenShakeMagnitude.Text);
             gun.ScreenShakeSpeed = float.Parse(screenShakeSpeed.Text);
             gun.ScreenShakeTime = float.Parse(screenShakeTime.Text);
@@ -770,49 +761,49 @@ namespace Gun_Property_Editor
             gun.BurstCooldownTime = float.Parse(burstCooldownTime.Text);
             gun.BurstShotCount = int.Parse(burstShotCount.Text);
             gun.ChargedGunChargeTime = float.Parse(chargeTime.Text);
-            gun.UsesShotgunStyleVelocityRandomizer = (bool)usesShotgunStyleVelocityRandomizer.IsChecked;
+            gun.UsesShotgunStyleVelocityRandomizer = usesShotgunStyleVelocityRandomizer.IsChecked ?? false;
             gun.DecreaseFinalSpeedPercentMin = float.Parse(decreaseFinalSpeedPercentMin.Text);
             gun.IncreaseFinalSpeedPercentMax = float.Parse(increaseFinalSpeedPercentMax.Text);
-            gun.UsesCustomSprite = (bool)usesCustomSprites.IsChecked;
+            gun.UsesCustomSprite = usesCustomSprites.IsChecked ?? false;
             gun.DefaultSprite = !string.IsNullOrWhiteSpace(spriteDir.Text) ? spriteDir.Text.Substring(spriteDir.Text.LastIndexOf("\\") + 1, spriteDir.Text.LastIndexOf(".") - spriteDir.Text.LastIndexOf("\\") - 1) : null;
             gun.SpriteFPS = int.Parse(spriteFps.Text);
 
             gun.ProjectileScaleMultiplier = float.Parse(projectileScaleMultiplier.Text);
-            gun.AppliesStun = (bool)stunsEnemies.IsChecked;
+            gun.AppliesStun = stunsEnemies.IsChecked ?? false;
             gun.StunChance = float.Parse(stunChance.Text);
             gun.StunDuration = float.Parse(stunDuration.Text);
-            gun.AppliesBleed = (bool)bleedsEnemies.IsChecked;
+            gun.AppliesBleed = bleedsEnemies.IsChecked ?? false;
             gun.BleedChance = float.Parse(bleedChance.Text);
             gun.BleedDuration = float.Parse(bleedDuration.Text);
-            gun.AppliesCharm = (bool)charmsEnemies.IsChecked;
+            gun.AppliesCharm = charmsEnemies.IsChecked ?? false;
             gun.CharmChance = float.Parse(charmChance.Text);
             gun.CharmDuration = float.Parse(charmDuration.Text);
-            gun.AppliesFire = (bool)firesEnemies.IsChecked;
+            gun.AppliesFire = firesEnemies.IsChecked ?? false;
             gun.FireChance = float.Parse(fireChance.Text);
             gun.FireDuration = float.Parse(fireDuration.Text);
-            gun.AppliesFreeze = (bool)freezesEnemies.IsChecked;
+            gun.AppliesFreeze = freezesEnemies.IsChecked ?? false;
             gun.FreezeChance = float.Parse(freezeChance.Text);
             gun.FreezeDuration = float.Parse(freezeDuration.Text);
-            gun.AppliesPoison = (bool)poisonsEnemies.IsChecked;
+            gun.AppliesPoison = poisonsEnemies.IsChecked ?? false;
             gun.PoisonChance = float.Parse(poisonChance.Text);
-            gun.AppliesSpeed = (bool)speedsEnemies.IsChecked;
+            gun.AppliesSpeed = speedsEnemies.IsChecked ?? false;
             gun.SpeedChance = float.Parse(speedChance.Text);
             gun.SpeedDuration = float.Parse(speedDuration.Text);
             gun.SpeedMultiplier = float.Parse(speedMultiplier.Text);
-            gun.AppliesKnockbackToPlayer = (bool)appliesKnockbackToPlayer.IsChecked;
+            gun.AppliesKnockbackToPlayer = appliesKnockbackToPlayer.IsChecked ?? false;
             gun.PlayerKnockbackForce = float.Parse(playerKnockbackForce.Text);
-            gun.DamagesWalls = (bool)damagesWalls.IsChecked;
+            gun.DamagesWalls = damagesWalls.IsChecked ?? false;
             gun.ProjectileDamage = float.Parse(projectileDamage.Text);
             gun.ProjectileSpeed = float.Parse(projectileSpeed.Text);
             gun.ProjectileForce = float.Parse(projectileForce.Text);
             gun.ProjectileRange = float.Parse(projectileRange.Text);
-            gun.CollidesWithEnemies = (bool)collidesWithEnemies.IsChecked;
-            gun.CollidesWithPlayer = (bool)collidesWithPlayer.IsChecked;
-            gun.CollidesWithProjectiles = (bool)collidesWithProjectiles.IsChecked;
-            gun.CollidesOnlyWithPlayerProjectiles = (bool)collidesWithPlayerProjectiles.IsChecked;
-            gun.DoesBounce = (bool)doesBounce.IsChecked;
+            gun.CollidesWithEnemies = collidesWithEnemies.IsChecked ?? false;
+            gun.CollidesWithPlayer = collidesWithPlayer.IsChecked ?? false;
+            gun.CollidesWithProjectiles = collidesWithProjectiles.IsChecked ?? false;
+            gun.CollidesOnlyWithPlayerProjectiles = collidesWithPlayerProjectiles.IsChecked ?? false;
+            gun.DoesBounce = doesBounce.IsChecked ?? false;
             gun.NumberOfBounces = int.Parse(bounces.Text);
-            gun.DoesPierce = (bool)doesPierce.IsChecked;
+            gun.DoesPierce = doesPierce.IsChecked ?? false;
             gun.NumberOfPierces = int.Parse(pierces.Text);
 
             var serializerbuilder = new SerializerBuilder();
